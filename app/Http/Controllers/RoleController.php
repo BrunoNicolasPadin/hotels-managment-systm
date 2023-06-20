@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreRoleRequest;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 
@@ -19,12 +20,17 @@ class RoleController extends Controller
 
     public function create()
     {
-        //
+        return view('roles.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreRoleRequest $request)
     {
-        //
+        Role::create([
+            'name' => $request->name,
+            'description' => $request->description
+        ]);
+
+        return back()->with(['message' => 'Role created!']);
     }
 
     public function show(string $id)

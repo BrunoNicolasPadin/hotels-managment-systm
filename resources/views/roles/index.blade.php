@@ -88,7 +88,7 @@
                     </table>
                 </div>
 
-                {{ $roles->appends($roles)->links() }}
+                {{ $roles->links() }}
             @else
                 <div class="text-center mt-3">
                     <h1 class="text-3xl">Roles not found</h1>
