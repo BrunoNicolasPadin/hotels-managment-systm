@@ -11,13 +11,24 @@ use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index() : View
+    public function index(Request $request) : View
     {
+        $params = $request->except('_token');
+        $roles = null;
+
+        if (empty($params) || (! isset($params['searchData']) && isset($params['filter']))) {
+            $roles = Role::paginate(1);
+        } elseif (isset($params['filter'])) {
+            if ($params['filter'] === 'name') {
+                $roles = Role::where('name', 'LIKE', trim($params['searchData']).'%')->paginate(1);
+            }
+        } else {
+            $roles = Role::paginate(1);
+        }
+
         return view('roles.index', [
-            'roles' => Role::paginate(10)
+            'roles' => $roles,
+            'params' => $params,
         ]);
     }
 
@@ -55,7 +66,8 @@ class RoleController extends Controller
 
     public function destroy(string $id)
     {
-        //
+        Role::findOrFail($id)->delete($id);
+        return redirect()->route('roles.index')->with(['successMessage' => 'Role deleted!']);
     }
 
     function massiveDestroy()
