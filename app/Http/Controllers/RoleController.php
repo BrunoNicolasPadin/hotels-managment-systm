@@ -15,15 +15,16 @@ class RoleController extends Controller
     {
         $params = $request->except('_token');
         $roles = null;
+        $pages = 10;
 
         if (empty($params) || (! isset($params['searchData']) && isset($params['filter']))) {
-            $roles = Role::paginate(1);
+            $roles = Role::paginate($pages);
         } elseif (isset($params['filter'])) {
             if ($params['filter'] === 'name') {
-                $roles = Role::where('name', 'LIKE', trim($params['searchData']).'%')->paginate(1);
+                $roles = Role::where('name', 'LIKE', trim($params['searchData']).'%')->paginate($pages);
             }
         } else {
-            $roles = Role::paginate(1);
+            $roles = Role::paginate($pages);
         }
 
         return view('roles.index', [
@@ -68,10 +69,5 @@ class RoleController extends Controller
     {
         Role::findOrFail($id)->delete($id);
         return redirect()->route('roles.index')->with(['successMessage' => 'Role deleted!']);
-    }
-
-    function massiveDestroy()
-    {
-        
     }
 }
