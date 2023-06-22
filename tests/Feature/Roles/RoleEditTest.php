@@ -11,7 +11,7 @@ it('should show edit form', function (User $admin) {
     $response->assertStatus(200)->assertSeeText($role->name);
 })->with('admin');
 
-it('should store a new role', function (User $admin) {
+it('should update a role', function (User $admin) {
     $role = Role::factory()->create();
     $request = [
         'name' => 'Role updated',
