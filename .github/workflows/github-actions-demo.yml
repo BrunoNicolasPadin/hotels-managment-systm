@@ -1,4 +1,4 @@
-name: Run tests
+name: Run tests, code analyzer and deploy
  
 on: [push]
  
@@ -28,13 +28,11 @@ jobs:
       - name: Directory Permissions
         run: chmod -R 777 storage bootstrap/cache
 
-      - name: Create Database
-        run: |
-          mkdir -p database
-          touch database/database.sqlite
-
-      - name: Execute tests (Unit and Feature tests) via pest
+      - name: Create database
         env:
           DB_CONNECTION: sqlite
           DB_DATABASE: database/database.sqlite
+        run: php artisan migrate --seed
+
+      - name: Run tests in Pest
         run: ./vendor/bin/pest
