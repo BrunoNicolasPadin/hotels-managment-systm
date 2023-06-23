@@ -65,7 +65,7 @@ return [
                 'dump_binary_path' => 'c:\xampp\mysql\bin',
                 'use_single_transaction',
                 'timeout' => 60 * 5, // 5 minute timeout
-            ]
+            ],
         ],
 
         'pgsql' => [
