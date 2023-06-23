@@ -1,6 +1,9 @@
 name: Run tests, code analyzer and deploy
  
-on: [push]
+on:
+  push:
+    branches:
+      - main
  
 jobs:
   tests:
