@@ -4,6 +4,9 @@ on: [push]
  
 jobs:
   tests:
+    env:
+      DB_CONNECTION: sqlite
+      DB_DATABASE: database/database.sqlite
     name: Run tests
     runs-on: ubuntu-latest
     steps:
@@ -34,9 +37,6 @@ jobs:
           touch database/database.sqlite
 
       - name: Run migrations and seed to fill sqlite database
-        env:
-          DB_CONNECTION: sqlite
-          DB_DATABASE: database/database.sqlite
         run: php artisan migrate --seed
 
       - name: Run tests in Pest
