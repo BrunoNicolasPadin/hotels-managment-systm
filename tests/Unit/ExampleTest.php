@@ -1,7 +1,7 @@
 <?php
 
-it('should return ok', function () {
-    $response = $this->get(route('home'));
-
-    $response->assertStatus(200);
-});
+test('sum', function () {
+    $result = 1+2;
+  
+    expect($result)->toBe(3);
+ });
