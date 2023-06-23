@@ -15,7 +15,7 @@ it('should update a role', function (User $admin) {
     $role = Role::factory()->create();
     $request = [
         'name' => 'Role updated',
-        'description' => 'Something updated'
+        'description' => 'Something updated',
     ];
 
     $response = $this->actingAs($admin)->put(route('roles.update', $role->id), $request);

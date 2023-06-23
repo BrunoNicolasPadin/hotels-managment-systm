@@ -23,7 +23,7 @@ class StoreRoleRequest extends FormRequest
     {
         return [
             'name' => 'required|string|unique:roles,name',
-            'description' => 'required|string'
+            'description' => 'required|string',
         ];
     }
 }

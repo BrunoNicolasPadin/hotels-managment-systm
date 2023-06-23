@@ -23,7 +23,7 @@ class UpdateRoleRequest extends FormRequest
     {
         return [
             'name' => 'required|string|unique:roles,name,'.$this->role_id.'',
-            'description' => 'required|string'
+            'description' => 'required|string',
         ];
     }
 }

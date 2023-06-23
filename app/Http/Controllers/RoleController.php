@@ -11,7 +11,7 @@ use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
-    public function index(Request $request) : View
+    public function index(Request $request): View
     {
         $params = $request->except('_token');
         $roles = null;
@@ -33,12 +33,12 @@ class RoleController extends Controller
         ]);
     }
 
-    public function create() : View
+    public function create(): View
     {
         return view('roles.create');
     }
 
-    public function store(StoreRoleRequest $request) : RedirectResponse
+    public function store(StoreRoleRequest $request): RedirectResponse
     {
         Role::create($request->validated());
 
@@ -50,7 +50,7 @@ class RoleController extends Controller
         //
     }
 
-    public function edit(string $id) : View
+    public function edit(string $id): View
     {
         return view('roles.edit', [
             'role' => Role::findOrFail($id),
@@ -68,6 +68,7 @@ class RoleController extends Controller
     public function destroy(string $id)
     {
         Role::findOrFail($id)->delete($id);
+
         return redirect()->route('roles.index')->with(['successMessage' => 'Role deleted!']);
     }
 }

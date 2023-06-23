@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use Spatie\Permission\Models\Role;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Spatie\Permission\Models\Role;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class RoleFactory extends Factory
 {
     protected $model = Role::class;
+
     /**
      * Define the model's default state.
      *
@@ -20,7 +21,7 @@ class RoleFactory extends Factory
     {
         return [
             'name' => 'Administrator',
-            'description' => 'Something...'
+            'description' => 'Something...',
         ];
     }
 }

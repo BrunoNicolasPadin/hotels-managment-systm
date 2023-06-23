@@ -11,7 +11,7 @@ it('should show create form', function (User $admin) {
 it('should store a new role', function (User $admin) {
     $request = [
         'name' => 'Role 1',
-        'description' => 'Something'
+        'description' => 'Something',
     ];
 
     $response = $this->actingAs($admin)->post(route('roles.store', $request));
