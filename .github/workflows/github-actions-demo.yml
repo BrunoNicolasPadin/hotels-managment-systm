@@ -46,3 +46,12 @@ jobs:
 
       - name: Run tests in Pest
         run: ./vendor/bin/pest
+
+      - name: Run Laravel pint
+        run: ./vendor/bin/pint
+
+      - name: Commit changes making for Laravel pint
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: PHP Linting (Pint)
+          skip_fetch: true
