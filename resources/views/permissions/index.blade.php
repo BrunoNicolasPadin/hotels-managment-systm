@@ -4,7 +4,7 @@
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
                 <li class="inline-flex items-center">
                     <a href="#" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
-                        Roles
+                        Permissions
                     </a>
                 </li>
             </ol>
@@ -31,14 +31,14 @@
                     <div id="dropdownAction" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
                         <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownActionButton">
                             <li>
-                                <a href="{{ route('roles.create') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Create</a>
+                                <a href="{{ route('permissions.create') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Create</a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
 
-            <form class="my-6" action="{{ route('roles.index') }}">
+            <form class="my-6" action="{{ route('permissions.index') }}">
                 <div class="flex">
                     <select name="filter" class="text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100">
                         <option value="" @if (isset($params['filter']) && $params['filter'] === '') selected @endif>Todos</option>
@@ -54,7 +54,7 @@
                 </div>
             </form>
 
-            @if ($roles->count() > 0)
+            @if ($permissions->count() > 0)
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                     <table class="w-full text-sm text-center text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -63,29 +63,23 @@
                                     Name
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    Description
-                                </th>
-                                <th scope="col" class="px-6 py-3">
                                     Action
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($roles as $role)
+                            @foreach ($permissions as $permission)
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $role->name }}
+                                        {{ $permission->name }}
                                     </th>
-                                    <td class="px-6 py-4">
-                                        {{ $role->description }}
-                                    </td>
                                     <td class="grid grid-cols-2 px-6 py-4 space-x-3">
-                                        <a href="{{ route('roles.edit', $role->id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                        <form method="POST" action="{{ route('roles.destroy', $role->id) }}">
+                                        <a href="{{ route('permissions.edit', $permission->id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                        <form method="POST" action="{{ route('permissions.destroy', $permission->id) }}">
                                             @method('delete')
                                             @csrf
                                             <button type="submit"
-                                                onclick="return confirm('¿Are you sure do you want to remove {{ $role->name }}?')"
+                                                onclick="return confirm('¿Are you sure do you want to remove {{ $permission->name }}?')"
                                                 class="font-medium text-red-600 dark:text-red-500 hover:underline">
                                                 Remove
                                             </button>
@@ -98,11 +92,11 @@
                 </div>
 
                 <div class="my-4">
-                    {{ $roles->appends($params)->links() }}
+                    {{ $permissions->appends($params)->links() }}
                 </div>
             @else
                 <div class="text-center mt-3">
-                    <h1 class="text-3xl">Roles not found</h1>
+                    <h1 class="text-3xl">Permissions not found</h1>
                 </div>
             @endif
         </div>

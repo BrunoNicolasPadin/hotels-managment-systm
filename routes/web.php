@@ -27,6 +27,7 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     require __DIR__.'/resources/profile.php';
     require __DIR__.'/resources/role.php';
+    require __DIR__.'/resources/permission.php';
 });
 
 require __DIR__.'/auth.php';
