@@ -1,8 +1,8 @@
 <?php
 
+use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
-use App\Models\Permission;
 
 it('should delete permission', function (User $admin) {
     $role = Role::factory()->create();
