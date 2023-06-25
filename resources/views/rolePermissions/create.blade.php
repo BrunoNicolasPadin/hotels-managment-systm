@@ -39,7 +39,7 @@
                 @csrf
                 <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                     <div class="col-span-2">
-                        <label for="permission_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select the permission</label>
+                        <label for="permission_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select the permission *</label>
                         <select @required(true) id="permission_id" name="permission_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option @selected(true) value="">-</option>
                             @foreach ($permissions as $permission)
