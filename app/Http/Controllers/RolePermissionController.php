@@ -2,63 +2,48 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreRolePermissionRequest;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class RolePermissionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(int $role_id): View
     {
-        //
+        return view('rolePermissions.index', [
+            'role' => Role::findById($role_id),
+            'permissions' => Role::findById($role_id)->permissions,
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function create(int $role_id) : View
     {
-        //
+        $permissionsALreadyTaken = Role::findById($role_id)->permissions->pluck('id');
+        return view('rolePermissions.create', [
+            'role' => Role::findById($role_id),
+            'permissions' => Permission::orderBy('name', 'ASC')->whereNotIn('id', $permissionsALreadyTaken)->get(),
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRolePermissionRequest $request, int $role_id) : RedirectResponse
     {
-        //
+        $role = Role::findById($role_id);
+        $role->givePermissionTo($request->permission_id);
+
+        return redirect()->route('assigned-permissions.index', $role_id)->with(['successMessage' => 'Permission assigned!']);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function destroy(int $role_id, string $id) : RedirectResponse
     {
-        //
-    }
+        $role = Role::findById($role_id);
+        $role->revokePermissionTo($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->route('assigned-permissions.index', $role_id)->with(['successMessage' => 'Permission revoked!']);
     }
 }
