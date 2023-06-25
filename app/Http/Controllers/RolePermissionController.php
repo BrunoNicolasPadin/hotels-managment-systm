@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreRolePermissionRequest;
-use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Spatie\Permission\Models\Permission;
@@ -19,9 +18,10 @@ class RolePermissionController extends Controller
         ]);
     }
 
-    public function create(int $role_id) : View
+    public function create(int $role_id): View
     {
         $permissionsALreadyTaken = Role::findById($role_id)->permissions->pluck('id');
+
         return view('rolePermissions.create', [
             'role' => Role::findById($role_id),
             'permissions' => Permission::orderBy('name', 'ASC')->whereNotIn('id', $permissionsALreadyTaken)->get(),
@@ -31,7 +31,7 @@ class RolePermissionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreRolePermissionRequest $request, int $role_id) : RedirectResponse
+    public function store(StoreRolePermissionRequest $request, int $role_id): RedirectResponse
     {
         $role = Role::findById($role_id);
         $role->givePermissionTo($request->permission_id);
@@ -39,7 +39,7 @@ class RolePermissionController extends Controller
         return redirect()->route('assigned-permissions.index', $role_id)->with(['successMessage' => 'Permission assigned!']);
     }
 
-    public function destroy(int $role_id, string $id) : RedirectResponse
+    public function destroy(int $role_id, string $id): RedirectResponse
     {
         $role = Role::findById($role_id);
         $role->revokePermissionTo($id);
