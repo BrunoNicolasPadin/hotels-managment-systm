@@ -56,7 +56,7 @@
 
             @if ($roles->count() > 0)
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <table class="w-full text-sm text-center text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col" class="px-6 py-3">
@@ -79,7 +79,8 @@
                                     <td class="px-6 py-4">
                                         {{ $role->description }}
                                     </td>
-                                    <td class="flex items-center px-6 py-4 space-x-3">
+                                    <td class="grid grid-cols-3 px-6 py-4 space-x-3">
+                                        <a href="{{ route('permissions.index', $role->id) }}" class="font-medium text-orange-400 dark:text-yellow-500 hover:underline">Permissions</a>
                                         <a href="{{ route('roles.edit', $role->id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                                         <form method="POST" action="{{ route('roles.destroy', $role->id) }}">
                                             @method('delete')
