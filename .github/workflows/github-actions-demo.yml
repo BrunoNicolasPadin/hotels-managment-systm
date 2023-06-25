@@ -1,10 +1,10 @@
 name: Run tests, code analyzer and deploy
  
 on:
-  push:
+  pull_request:
     branches:
       - main
- 
+
 jobs:
   tests:
     env:
