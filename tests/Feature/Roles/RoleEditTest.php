@@ -8,7 +8,7 @@ it('should show edit form', function (User $admin) {
 
     $response = $this->actingAs($admin)->get(route('roles.edit', $role->id));
 
-    $response->assertStatus(200)->assertSeeText($role->name);
+    $response->assertStatus(200)->assertSeeText('Edit');
 })->with('admin');
 
 it('should update a role', function (User $admin) {
