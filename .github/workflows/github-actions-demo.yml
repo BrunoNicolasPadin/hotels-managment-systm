@@ -1,7 +1,7 @@
 name: Run tests, code analyzer and deploy
  
 on:
-  pull_request:
+  push:
     branches:
       - main
 
