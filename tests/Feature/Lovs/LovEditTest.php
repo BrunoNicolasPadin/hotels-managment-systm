@@ -16,7 +16,7 @@ it('should update a lov', function (User $admin) {
     $request = [
         'code' => 'TEST',
         'type' => 'STATUS',
-        'label' => 'Tests'
+        'label' => 'Tests',
     ];
 
     $response = $this->actingAs($admin)->put(route('lovs.update', $lov->id), $request);

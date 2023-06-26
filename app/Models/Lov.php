@@ -30,13 +30,12 @@ class Lov extends Model
         'id' => 'integer',
     ];
 
-    function scopeFilter(Builder $query, array $params) : void 
+    public function scopeFilter(Builder $query, array $params): void
     {
         if (isset($params['filter'])) {
             if ($params['filter'] === 'code') {
                 $query->where('code', 'LIKE', '%'.trim($params['searchData']).'%');
-            }
-            elseif ($params['filter'] === 'type') {
+            } elseif ($params['filter'] === 'type') {
                 $query->where('type', 'LIKE', '%'.trim($params['searchData']).'%');
             }
         }

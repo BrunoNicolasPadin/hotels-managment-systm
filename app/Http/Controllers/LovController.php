@@ -44,7 +44,7 @@ class LovController extends Controller
     public function edit(Lov $lov): View
     {
         return view('lovs.edit', [
-            'lov' => $lov
+            'lov' => $lov,
         ]);
     }
 

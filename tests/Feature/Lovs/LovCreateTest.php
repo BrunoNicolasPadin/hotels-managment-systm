@@ -12,7 +12,7 @@ it('should store a new lov', function (User $admin) {
     $request = [
         'code' => 'TEST',
         'type' => 'STATUS',
-        'label' => 'Tests'
+        'label' => 'Tests',
     ];
 
     $response = $this->actingAs($admin)->post(route('lovs.store', $request));
