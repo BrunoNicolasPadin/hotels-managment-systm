@@ -24,12 +24,13 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+require __DIR__.'/auth.php';
+
 Route::middleware('auth')->group(function () {
     require __DIR__.'/resources/profile.php';
     require __DIR__.'/resources/role.php';
     require __DIR__.'/resources/permission.php';
     require __DIR__.'/resources/rolePermission.php';
     require __DIR__.'/resources/lov.php';
+    require __DIR__.'/resources/hotel.php';
 });
-
-require __DIR__.'/auth.php';
