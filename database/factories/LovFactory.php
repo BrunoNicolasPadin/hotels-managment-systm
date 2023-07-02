@@ -34,4 +34,65 @@ class LovFactory extends Factory
             ];
         });
     }
+
+    public function statusProcessCompleted(): Factory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'code' => 'STATUS_PROCESS_COMPLETED',
+                'type' => 'StatusProcess',
+            ];
+        });
+    }
+
+    public function statusProcessFailed(): Factory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'code' => 'STATUS_PROCESS_FAILED',
+                'type' => 'TypeModel',
+            ];
+        });
+    }
+
+    public function statusProcessPending(): Factory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'code' => 'STATUS_PROCESS_PENDING',
+                'type' => 'TypeModel',
+            ];
+        });
+    }
+
+    public function typeProcessExport(): Factory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'code' => 'TYPE_PROCESS_EXPORT',
+                'type' => 'TypeProcess',
+            ];
+        });
+    }
+
+    public function typeProcessImport(): Factory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'code' => 'TYPE_PROCESS_IMPORT',
+                'type' => 'TypeProcess',
+            ];
+        });
+    }
+
+    public function typeModelHotel(): Factory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'code' => 'Hotel',
+                'type' => 'TypeModel',
+                'label' => 'Hotel',
+            ];
+        });
+    }
 }
