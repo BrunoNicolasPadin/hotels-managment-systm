@@ -23,13 +23,13 @@ class ProcessFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name,
-            'type_id' => Lov::factory()->create()->id,
-            'status_id' => Lov::factory()->create()->id,
+            'type_id' => Lov::factory()->typeProcessExport()->create()->id,
+            'status_id' => Lov::factory()->statusProcessCompleted()->create()->id,
             'user_id' => User::factory()->create()->id,
             'total' => $this->faker->randomNumber(),
-            'file' => $this->faker->regexify('[A-Za-z0-9]{255}'),
-            'log' => $this->faker->regexify('[A-Za-z0-9]{255}'),
+            'file' => $this->faker->regexify('[A-Za-z0-9]{10}'),
+            'log' => $this->faker->regexify('[A-Za-z0-9]{10}'),
+            'model_id' => Lov::factory()->typeModelHotel()->create()->id,
         ];
     }
 }
