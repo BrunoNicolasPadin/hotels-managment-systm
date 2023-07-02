@@ -33,6 +33,15 @@
                             <li>
                                 <a href="{{ route('hotels.create') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Create</a>
                             </li>
+                            <li>
+                                <form action="{{ route('processes.store') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="type" value="TYPE_PROCESS_EXPORT">
+                                    <input type="hidden" name="status" value="STATUS_PROCESS_PENDING">
+                                    <input type="hidden" name="model" value="HOTEL_MODEL">
+                                    <button class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Export</button>
+                                </form>
+                            </li>
                         </ul>
                     </div>
                 </div>
