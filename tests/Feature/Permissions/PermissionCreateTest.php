@@ -15,5 +15,9 @@ it('should store a new permission', function (User $admin) {
 
     $response = $this->actingAs($admin)->post(route('permissions.store', $request));
 
+    $this->assertDatabaseHas('permissions', [
+        'name' => $request['name'],
+    ]);
+
     $response->assertStatus(302)->assertRedirect(route('permissions.index'));
 })->with('admin');

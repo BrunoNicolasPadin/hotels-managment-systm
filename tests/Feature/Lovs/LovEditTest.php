@@ -21,11 +21,11 @@ it('should update a lov', function (User $admin) {
 
     $response = $this->actingAs($admin)->put(route('lovs.update', $lov->id), $request);
 
-    $response->assertStatus(302)->assertRedirect(route('lovs.index'));
-
     $this->assertDatabaseHas('lovs', [
         'code' => $request['code'],
         'type' => $request['type'],
         'label' => $request['label'],
     ]);
+
+    $response->assertStatus(302)->assertRedirect(route('lovs.index'));
 })->with('admin');

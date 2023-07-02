@@ -20,5 +20,10 @@ it('should assign a new permission', function (User $admin) {
 
     $response = $this->actingAs($admin)->post(route('assigned-permissions.store', $role->id), $request);
 
+    $this->assertDatabaseHas('role_has_permissions', [
+        'role_id' => $role->id,
+        'permission_id' => $permission->id,
+    ]);
+
     $response->assertStatus(302)->assertRedirect(route('assigned-permissions.index', $role->id));
 })->with('admin');

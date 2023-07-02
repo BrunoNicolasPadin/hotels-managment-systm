@@ -17,5 +17,11 @@ it('should store a new lov', function (User $admin) {
 
     $response = $this->actingAs($admin)->post(route('lovs.store', $request));
 
+    $this->assertDatabaseHas('lovs', [
+        'code' => $request['code'],
+        'type' => $request['type'],
+        'label' => $request['label'],
+    ]);
+
     $response->assertStatus(302)->assertRedirect(route('lovs.index'));
 })->with('admin');

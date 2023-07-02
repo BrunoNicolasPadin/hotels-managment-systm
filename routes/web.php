@@ -33,4 +33,5 @@ Route::middleware('auth')->group(function () {
     require __DIR__.'/resources/rolePermission.php';
     require __DIR__.'/resources/lov.php';
     require __DIR__.'/resources/hotel.php';
+    require __DIR__.'/resources/process.php';
 });
