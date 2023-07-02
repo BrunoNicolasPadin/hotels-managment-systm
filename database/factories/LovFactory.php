@@ -25,4 +25,13 @@ class LovFactory extends Factory
             'label' => $this->faker->regexify('[A-Za-z0-9]{255}'),
         ];
     }
+
+    public function hotelType(): Factory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'type' => 'hotelType',
+            ];
+        });
+    }
 }
