@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\User;
 use App\Models\Hotel;
+use App\Models\User;
 
 it('should show a list of lovs', function (User $admin) {
     $hotel = Hotel::factory()->create();

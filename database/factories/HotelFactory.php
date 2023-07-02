@@ -2,10 +2,9 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use App\Models\Hotel;
 use App\Models\Lov;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class HotelFactory extends Factory
 {
