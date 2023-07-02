@@ -15,7 +15,7 @@ it('should store a new role', function (User $admin) {
     ];
 
     $response = $this->actingAs($admin)->post(route('roles.store', $request));
-    
+
     $this->assertDatabaseHas('roles', [
         'name' => $request['name'],
         'description' => $request['description'],

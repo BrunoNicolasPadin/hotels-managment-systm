@@ -2,18 +2,18 @@
 
 namespace App\Services;
 
-use Carbon\Carbon;
-use App\Models\Lov;
-use App\Models\Hotel;
-use App\Models\Process;
 use App\Exports\HotelsExport;
+use App\Models\Hotel;
+use App\Models\Lov;
+use App\Models\Process;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
-use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 
-class ExportServices 
+class ExportServices
 {
-    public function handle(array|null $query, Process $process) : void
+    public function handle(array|null $query, Process $process): void
     {
         try {
             $path = null;
@@ -31,7 +31,7 @@ class ExportServices
                 } else {
                     $hotels = Hotel::withTrashed()->with('type')->filter($params)->get();
                 }
-    
+
                 Excel::store(new HotelsExport($hotels->toArray()), $path, 'public');
 
                 $total = $hotels->count();

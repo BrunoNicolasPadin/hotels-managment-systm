@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Process extends Model
 {
@@ -67,19 +67,19 @@ class Process extends Model
             } elseif ($params['filter'] === 'log') {
                 $query->where('log', 'LIKE', '%'.trim($params['searchData']).'%');
             } elseif ($params['filter'] === 'type') {
-                $query->whereHas('type', function ($q) use($params) {
+                $query->whereHas('type', function ($q) use ($params) {
                     $q->where('label', 'LIKE', '%'.trim($params['searchData']).'%');
                 });
             } elseif ($params['filter'] === 'status') {
-                $query->whereHas('status', function ($q) use($params) {
+                $query->whereHas('status', function ($q) use ($params) {
                     $q->where('label', 'LIKE', '%'.trim($params['searchData']).'%');
                 });
             } elseif ($params['filter'] === 'user') {
-                $query->whereHas('user', function ($q) use($params) {
+                $query->whereHas('user', function ($q) use ($params) {
                     $q->where('name', 'LIKE', '%'.trim($params['searchData']).'%');
                 });
             } elseif ($params['filter'] === 'model') {
-                $query->whereHas('model', function ($q) use($params) {
+                $query->whereHas('model', function ($q) use ($params) {
                     $q->where('label', 'LIKE', '%'.trim($params['searchData']).'%');
                 });
             } elseif ($params['filter'] === 'id') {

@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\User;
 use App\Models\Process;
+use App\Models\User;
 
 it('should show a list of processes', function (User $admin) {
     $process = Process::factory()->create();

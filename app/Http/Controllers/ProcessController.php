@@ -2,18 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Process;
-use Illuminate\View\View;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\URL;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Route;
-use App\Http\Requests\ProcessStoreRequest;
 use App\Jobs\CreateProcessJob;
-use App\Jobs\CreateRunProcessJob;
 use App\Models\Lov;
+use App\Models\Process;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
+use Illuminate\View\View;
 
 class ProcessController extends Controller
 {
@@ -66,15 +63,15 @@ class ProcessController extends Controller
         return view('processes.show');
     }
 
-    public function destroy(Process $process) : RedirectResponse 
+    public function destroy(Process $process): RedirectResponse
     {
         if ($process->file) {
             Storage::delete($process->file);
-        }
-        elseif ($process->log) {
+        } elseif ($process->log) {
             Storage::delete($process->log);
         }
         $process->delete();
+
         return redirect()->route('processes.index')->with(['successMessage' => 'Process removed!']);
     }
 }
