@@ -49,7 +49,9 @@ class Hotel extends Model
             } elseif ($params['filter'] === 'address') {
                 $query->where('address', 'LIKE', '%'.trim($params['searchData']).'%');
             } elseif ($params['filter'] === 'type') {
-                $query->where('type', 'LIKE', '%'.trim($params['searchData']).'%');
+                $query->whereHas('type', function ($q) use($params) {
+                    $q->where('label', 'LIKE', '%'.trim($params['searchData']).'%');
+                });
             }
         }
     }
