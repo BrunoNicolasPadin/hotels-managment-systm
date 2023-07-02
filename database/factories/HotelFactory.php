@@ -25,7 +25,7 @@ class HotelFactory extends Factory
             'name' => $this->faker->name,
             'photo' => $this->faker->regexify('[A-Za-z0-9]{255}'),
             'description' => $this->faker->text,
-            'type_id' => Lov::factory()->create()->id,
+            'type_id' => Lov::factory()->hotelType()->create()->id,
             'address' => $this->faker->regexify('[A-Za-z0-9]{255}'),
         ];
     }
