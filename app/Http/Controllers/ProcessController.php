@@ -13,6 +13,7 @@ use App\Jobs\CreateProcessJob;
 use App\Jobs\CreateRunProcessJob;
 use App\Models\Lov;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProcessController extends Controller
 {
@@ -67,6 +68,13 @@ class ProcessController extends Controller
 
     public function destroy(Process $process) : RedirectResponse 
     {
-        //
+        if ($process->file) {
+            Storage::delete($process->file);
+        }
+        elseif ($process->log) {
+            Storage::delete($process->log);
+        }
+        $process->delete();
+        return redirect()->route('processes.index')->with(['successMessage' => 'Process removed!']);
     }
 }
